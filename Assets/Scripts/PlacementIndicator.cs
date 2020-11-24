@@ -37,4 +37,10 @@ public class PlacementIndicator : MonoBehaviour
             }
         }
     }
+
+    void CameraScale()
+    {
+        XRCameraConfiguration currentCamConfig = GetComponent<XRCameraConfiguration>();
+        
+    }
 }
