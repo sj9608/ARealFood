@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ObjectSpawner : MonoBehaviour
 {
-    public GameObject objectToSpawn;
-    private PlacementIndicator placementIndicator;
+    public GameObject objectToSpawn; // 생성할 게임오브젝트
+    private PlacementIndicator placementIndicator; // 평지 표시기
     void Start()
     {
         placementIndicator = FindObjectOfType<PlacementIndicator>();
