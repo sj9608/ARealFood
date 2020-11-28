@@ -7,7 +7,7 @@ using UnityEngine.XR.ARSubsystems; // AR관련 레이캐스팅 기능 들어있�
 public class PlacementIndicator : MonoBehaviour
 {
     private ARRaycastManager rayManager; // AR session origin 오브젝트에 ARRaycastManager component 끌어오기 위함.
-    private GameObject visual; // 올바른 평면일 경우에만 보여주기 위함.
+    public GameObject visual; // 올바른 평면일 경우에만 보여주기 위함.
     void Start()
     {
         // 컴포넌트 가져오기

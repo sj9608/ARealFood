@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/AR_Core.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/QR_Scan.unity
+    guid: b09b3b09bb05240a4acb736446f034f3
   m_configObjects:
     com.unity.xr.arcore.PlayerSettings: {fileID: 11400000, guid: 16cd69485af1441c3a641fc8843f7ef9,
       type: 2}
