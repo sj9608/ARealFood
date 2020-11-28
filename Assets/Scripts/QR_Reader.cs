@@ -1,18 +1,22 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 using ZXing;
 using ZXing.QrCode;
+
 public class QR_Reader : MonoBehaviour
 {
-
+    private WebCamDevice webCamDevice;
     private WebCamTexture camTexture;
     private Rect screenRect;
+
     void Start()
     {
         screenRect = new Rect(0, 0, Screen.width, Screen.height);
         camTexture = new WebCamTexture();
         camTexture.requestedHeight = Screen.height;
         camTexture.requestedWidth = Screen.width;
+
         if (camTexture != null)
         {
             camTexture.Play();
