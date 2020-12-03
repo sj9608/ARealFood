@@ -12,7 +12,7 @@ public class FoodRotator : MonoBehaviour
         objectToRotate = GetComponent<GameObject>();
     }
 
-    
+
     void FixedUpdate()
     {
         objectToRotate.transform.rotation = Quaternion.Euler(0, Time.fixedDeltaTime * rotationSpeed, 0); // y축 으로 프레임마다 회전
