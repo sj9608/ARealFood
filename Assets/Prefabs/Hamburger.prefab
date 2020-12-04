@@ -247,7 +247,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7707330710510090760}
   m_Layer: 0
-  m_Name: "\uD584\uBC84\uAC70"
+  m_Name: Hamburger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
