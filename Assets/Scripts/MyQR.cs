@@ -12,10 +12,11 @@ public class MyQR : MonoBehaviour
     private Rect rect; // 인식하는 사이즈
     private int W, H; // 스크린 사이즈
     private bool isQuit; // 어플 종료관련
-    public Text txt; // 바꿔줄 텍스트
 
-    public string LastResult;
-    private bool shouldEncodeNow;
+    // public Text txt; // 바꿔줄 텍스트 디버그 용도
+
+    public string LastResult; // Decode된 텍스트가 들어갈 변수
+    public static bool shouldDecodeNow; // QR코드 디코드 해야하는 상황판단
 
     /// <summary>
     /// This function is called when the MonoBehaviour will be destroyed.
@@ -40,10 +41,10 @@ public class MyQR : MonoBehaviour
 
         rect = new Rect(0, 0, W, H);
         qrTexture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
-    
 
-        LastResult = "http://www.google.com";
-        shouldEncodeNow = true;
+
+        LastResult = "";
+        shouldDecodeNow = true;
 
         qrThread = new Thread(DecodeQR);
         qrThread.Start();
@@ -52,28 +53,38 @@ public class MyQR : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        qrTexture.ReadPixels(rect, 0, 0, false);
-        qrTexture.Apply();
+        if (shouldDecodeNow)
+        {
+            qrTexture.ReadPixels(rect, 0, 0, false);
+            qrTexture.Apply();
+        }
     }
 
     void DecodeQR()
     {
         var barcodeReader = new BarcodeReader();
 
-        while(true)
+        while (true)
         {
             if (isQuit)
                 break;
             try
             {
-                // docode the current frame
+                // decode the current frame
                 var result = barcodeReader.Decode(qrTexture.GetPixels32(), W, H);
 
-                if(result != null)
+                if (result != null)
                 {
                     LastResult = result.Text;
-                    shouldEncodeNow = true;
-                    txt.text = LastResult;
+                    shouldDecodeNow = false;
+
+                    Debug.Log("디코딩 된 텍스트 값은 " + LastResult);
+
+                    if (LastResult == "FirstFood") // 디코드한 바코드의 txt 값이 "FirstFood" 일 경우에
+                    {
+                        this.gameObject.SetActive(false); // 현재 QR_Canvas를 비활성화한다.
+                    }
+                    // txt.text = LastResult; // 디버그용
                 }
 
                 // Sleep a little bit and set the signal to get the next frame
