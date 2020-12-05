@@ -7,6 +7,8 @@ using ZXing;
 
 public class MyQR : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject menuPanel; // 메뉴패널
     private Thread qrThread; // QRcamera는 스레드 사용
     private Texture2D qrTexture; // QR 인식하는 텍스쳐
     private Rect rect; // 인식하는 사이즈
@@ -58,6 +60,11 @@ public class MyQR : MonoBehaviour
             qrTexture.ReadPixels(rect, 0, 0, false);
             qrTexture.Apply();
         }
+        if(LastResult == "FirstFood")
+        {
+            menuPanel.SetActive(true);
+            DeActive();
+        }
     }
 
     void DecodeQR()
@@ -78,12 +85,7 @@ public class MyQR : MonoBehaviour
                     LastResult = result.Text;
                     shouldDecodeNow = false;
 
-                    Debug.Log("디코딩 된 텍스트 값은 " + LastResult);
-
-                    if (LastResult == "FirstFood") // 디코드한 바코드의 txt 값이 "FirstFood" 일 경우에
-                    {
-                        this.gameObject.SetActive(false); // 현재 QR_Canvas를 비활성화한다.
-                    }
+                    // Debug.Log("디코딩 된 텍스트 값은 " + LastResult);
                     // txt.text = LastResult; // 디버그용
                 }
 
@@ -95,5 +97,10 @@ public class MyQR : MonoBehaviour
 
             }
         }
+    }
+
+    void DeActive()
+    {
+        this.gameObject.SetActive(false);
     }
 }

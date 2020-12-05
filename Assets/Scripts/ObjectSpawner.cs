@@ -17,15 +17,15 @@ public class ObjectSpawner : MonoBehaviour
 
         if (placementIndicator != null) // 평면 감지 되었으면
         {
-        objectToSpawns[0].SetActive(true); // 오브젝트 비주얼 활성화
+            objectToSpawns[0].SetActive(true); // 오브젝트 비주얼 활성화
         }
     }
 
-     void Update()
-    {        
+    void Update()
+    {
         // 터치를 했나 ? && 첫 번 쨰 클릭
         if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
-        {            
+        {
             if (!isExist) // obj가 존재하지 않을 때 생성
             {
                 obj = Instantiate(objectToSpawns[MenuButton.menuNum],
@@ -41,10 +41,10 @@ public class ObjectSpawner : MonoBehaviour
         }
 
         // 안드로이드 플랫폼에서
-        if(Application.platform == RuntimePlatform.Android)
+        if (Application.platform == RuntimePlatform.Android)
         {
             // 뒤로가기 버튼 눌렀을 때
-            if(Input.GetKey(KeyCode.Escape))
+            if (Input.GetKey(KeyCode.Escape))
             {
                 this.gameObject.GetComponent<ObjectSpawner>().enabled = false; // 현재 게임 오브젝트 비활성화
                 getEscBtn = true;
