@@ -1,5 +1,4 @@
 ﻿using System.Threading;
-
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,17 +19,11 @@ public class MyQR : MonoBehaviour
     public string LastResult; // Decode된 텍스트가 들어갈 변수
     public static bool shouldDecodeNow; // QR코드 디코드 해야하는 상황판단
 
-    /// <summary>
-    /// This function is called when the MonoBehaviour will be destroyed.
-    /// </summary>
     void OnDestroy()
     {
         qrThread.Abort();
     }
 
-    /// <summary>
-    /// Callback sent to all game objects before the application is quit.
-    /// </summary>
     void OnApplicationQuit()
     {
         isQuit = true;
@@ -84,9 +77,6 @@ public class MyQR : MonoBehaviour
                 {
                     LastResult = result.Text;
                     shouldDecodeNow = false;
-
-                    // Debug.Log("디코딩 된 텍스트 값은 " + LastResult);
-                    // txt.text = LastResult; // 디버그용
                 }
 
                 // Sleep a little bit and set the signal to get the next frame
@@ -94,7 +84,6 @@ public class MyQR : MonoBehaviour
             }
             catch
             {
-
             }
         }
     }
