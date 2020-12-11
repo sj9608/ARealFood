@@ -9,7 +9,7 @@ public class ObjectSpawner : MonoBehaviour
     private bool isExist = false; // 오브젝트 존재 판단
     private PlacementIndicator placementIndicator; // 평지 표시기
     public static bool getEscBtn = false; // 뒤로가기버튼 체크
-    public GameObject menuButton;
+    public GameObject menuButton; // UI Panel
 
     void OnEnable()
     {
@@ -28,7 +28,7 @@ public class ObjectSpawner : MonoBehaviour
         {
             if (!isExist) // obj가 존재하지 않을 때 생성
             {
-                obj = Instantiate(objectToSpawns[MenuButton.menuNum],
+            obj = Instantiate(objectToSpawns[MenuButton.menuNum],
                 placementIndicator.transform.position,
                 placementIndicator.transform.rotation);
                 isExist = true;
@@ -46,7 +46,12 @@ public class ObjectSpawner : MonoBehaviour
             // 뒤로가기 버튼 눌렀을 때
             if (Input.GetKey(KeyCode.Escape))
             {
-                this.gameObject.GetComponent<ObjectSpawner>().enabled = false; // 현재 게임 오브젝트 비활성화
+                /* obj 가리기 */
+                obj.SetActive(false);
+                isExist = false;
+                MenuButton.menuNum = 0;
+                /* obj 가리기 */ 
+
                 getEscBtn = true;
                 menuButton.GetComponent<MenuButton>().ReturnMenuPanel(getEscBtn);
             }
